@@ -1,7 +1,7 @@
 ## Pokedex
-#Ce qui a été fait :
+Ce qui a été fait :
 - Menu Principal
 - Listage de Tous les Pokémons
 - Recherche par toutes les habilités
 
-#Ce qui doit être fait :
+Ce qui doit être fait :
