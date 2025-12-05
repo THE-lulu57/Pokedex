@@ -5,3 +5,5 @@ Ce qui a été fait :
 - Recherche par toutes les habilités
 
 Ce qui doit être fait :
+  Filtrage des Pokémons par :
+-Odre alphabétique
