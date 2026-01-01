@@ -35,6 +35,61 @@ def charger():
 
     return Pokemon
 
+def statistiques(Pokemon, type_calcul, quoi):
+    quoi = int(quoi)
+    type_calcul = int(type_calcul)
+    
+    # On définit le nom de la stat
+    nom_stat = ""
+    if quoi == 4:
+        nom_stat = "PV"
+    elif quoi == 5:
+        nom_stat = "Attaque"
+    elif quoi == 6:
+        nom_stat = "Défense"
+    elif quoi == 7:
+        nom_stat = "Vitesse"
+    elif quoi == 8:
+        nom_stat = "Génération"
+
+    if type_calcul == 3: # MOYENNE
+        somme = 0
+        for pkm in Pokemon:
+            somme += pkm[quoi]
+        
+        if len(Pokemon) > 0:
+            moyenne = somme / len(Pokemon)
+            print("-" * 50)
+            print("Moyenne des", nom_stat, "de tous les Pokémon :", round(moyenne, 2)) 
+            print("-" * 50)
+        else:
+            print("Erreur : Pokédex vide.")
+
+    else: # MAX (1) ou MIN (2)
+        # On prend le premier de la liste comme référence
+        pkm_retenu = Pokemon[0]
+
+        for pkm in Pokemon:
+            valeur_actuelle = pkm[quoi]
+            valeur_retenue = pkm_retenu[quoi]
+
+            if type_calcul == 1: 
+                if valeur_actuelle > valeur_retenue:
+                    pkm_retenu = pkm
+            
+            elif type_calcul == 2: 
+                if valeur_actuelle < valeur_retenue:
+                    pkm_retenu = pkm
+
+        if type_calcul == 1:
+            intro = "MAXIMUM"
+        else:
+            intro = "MINIMUM"
+
+        print("-" * 50)
+        print("Le Pokémon avec le", intro, "de", nom_stat, "est :")
+        recherche(pkm_retenu)
+
 def recherche(pkm):
     print("Numéro :", pkm[0],
           "| Nom :", pkm[1],
@@ -147,6 +202,7 @@ def pokedex():
         print("    2 - Rechercher")
         print("    3 - Ajouter un Pokémon") 
         print("    4 - Filtrer") 
+        print("    5 - Statistiques")
        
         choix = input("Votre choix : ") 
         print("-" * 50)
@@ -292,12 +348,34 @@ def pokedex():
 
             filtrage(Pokemon, max_min, quoi, valeur)
 
+        elif choix == "5":
+            print("Quel type de statistique ?")
+            print("    1 - Le Maximum (Le plus fort)")
+            print("    2 - Le Minimum (Le plus faible)")
+            print("    3 - La Moyenne")
+            type_calcul = demander_entier("Choix : ")
+            
+            if type_calcul not in [1, 2, 3]:
+                print("Choix invalide.")
+                continue
+
+            print("-" * 50)
+            print("Sur quelle donnée ?")
+            print("    4 - PV")
+            print("    5 - Attaque")
+            print("    6 - Défense")
+            print("    7 - Vitesse")
+            print("    8 - Génération")
+            quoi = demander_entier("Choix : ")
+
+            if quoi in [4, 5, 6, 7, 8]:
+                statistiques(Pokemon, type_calcul, quoi)
+            else:
+                print("Choix invalide (choisissez entre 4 et 8).")
+        # -----------------------------------
+
         else:
-            print("Veuillez choisir 0, 1, 2, 3 ou 4.")
+            if choix not in ["1", "2", "3", "4", "5"]: # Petit fix ici pour inclure le 5
+                 print("Veuillez choisir un chiffre entre 0 et 5.")
     
-
-
-
-
-
 pokedex()     
