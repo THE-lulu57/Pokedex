@@ -68,7 +68,7 @@ Chaque Pokémon est stocké sous forme de liste avec l'organisation suivante :
 
 2. **Lancer le programme :**
    ```bash
-   cd pokedex-nsi
+   cd Pokedex
    python pokedex.py
    ```
 
