@@ -63,12 +63,12 @@ Chaque Pokémon est stocké sous forme de liste avec l'organisation suivante :
 
 1. **Cloner le dépôt :**
    ```bash
-   git clone https://github.com/votre-pseudo/pokedex-nsi.git
-   cd pokedex-nsi
+   git clone https://github.com/THE-lulu57/Pokedex.git
    ```
 
 2. **Lancer le programme :**
    ```bash
+   cd pokedex-nsi
    python pokedex.py
    ```
 
