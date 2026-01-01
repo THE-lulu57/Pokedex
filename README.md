@@ -1,5 +1,3 @@
-
-```markdown
 # 🎒 Projet NSI : Pokédex en Python
 
 **Description :** Un gestionnaire de base de données de Pokémon développé en Python. Ce projet permet de consulter, rechercher, filtrer et enrichir un Pokédex via une interface interactive en console.
