@@ -61,9 +61,9 @@ Chaque Pokémon est stocké sous forme de liste avec l'organisation suivante :
 
 ## 🛠️ Installation et Utilisation
 
-##Dépendances nécessaires :
-- [x] git
-- [x] un terminal python 
+## Dépendances nécessaires :
+- [x] GIT
+- [x] Un terminal python 
 
 1. **Cloner le dépôt :**
    ```bash
