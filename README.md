@@ -22,6 +22,7 @@
     2 - Rechercher
     3 - Ajouter un Pokémon
     4 - Filtrer
+    5 - Statistiques 
 ====================================================
 ```
 
