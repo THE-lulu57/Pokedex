@@ -61,6 +61,10 @@ Chaque Pokémon est stocké sous forme de liste avec l'organisation suivante :
 
 ## 🛠️ Installation et Utilisation
 
+##Dépendances nécessaires :
+- [x] git
+- [x] un terminal python 
+
 1. **Cloner le dépôt :**
    ```bash
    git clone https://github.com/THE-lulu57/Pokedex.git
