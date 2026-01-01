@@ -372,7 +372,6 @@ def pokedex():
                 statistiques(Pokemon, type_calcul, quoi)
             else:
                 print("Choix invalide (choisissez entre 4 et 8).")
-        # -----------------------------------
 
         else:
             if choix not in ["1", "2", "3", "4", "5"]: # Petit fix ici pour inclure le 5
