@@ -70,13 +70,15 @@ Chaque Pokémon est stocké sous forme de liste avec l'organisation suivante :
    git clone https://github.com/THE-lulu57/Pokedex.git
    ```
 
-2. **Lancer le programme :**
+2a. **Lancer le programme :** 
    ```bash
    cd Pokedex
    python pokedex.py
    ```
 
-3. Le menu principal s'affichera avec le logo ASCII et vous pourrez commencer à explorer votre Pokédex !
+2b. **Ou executer pokedex.py dans votre terminal python (ex Thonny ou VS Code avec le module Python installé** 
+
+3. **Le menu principal s'affichera et vous pourrez commencer à explorer votre Pokédex !**
 
 ---
 
