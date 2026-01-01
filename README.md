@@ -100,6 +100,3 @@ def filtrage(Pokemon, max_min, quoi, valeur):
 ## 📝 Licence
 
 Ce projet est développé dans un cadre éducatif (NSI). Par Lucas et Axel
-```
-
-Ton ASCII art est maintenant bien intégré dans le README ! Il s'affichera correctement dans un bloc de code sur GitHub 🎨
