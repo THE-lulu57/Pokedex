@@ -1,54 +1,39 @@
+def sauvegarder(Pokemon):
+    f = open("pokedex.txt", "w", encoding="utf-8")
+    for pkm in Pokemon:
+        ligne = ""
+        for elem in pkm:
+            ligne += str(elem) + ","
+        ligne = ligne[:-1]     # enlever la dernière virgule
+        f.write(ligne + "\n")
+    f.close()
 
-Pokemon = [[1, "Bulbizarre", "Plante", "Poison", 45, 49, 49, 45, 1],
-            [2, "Herbizarre", "Plante", "Poison", 60, 62, 63, 60, 1],
-            [3, "Florizarre", "Plante", "Poison", 80, 82, 83, 80, 1],
-            [4, "Salamèche", "Feu", "None", 39, 52, 43, 65, 1],
-            [5, "Reptincel", "Feu", "None", 58, 64, 58, 80, 1],
-            [6, "Dracaufeu", "Feu", "Vol", 78, 84, 78, 100, 1],
-            [7, "Carapuce", "Eau", "None", 44, 48, 65, 43, 1],
-            [8, "Carabaffe", "Eau", "None", 59, 63, 80, 58, 1],
-            [9, "Tortank", "Eau", "None", 79, 83, 100, 78, 1],
-            [10, "Chenipan", "Insecte", "None", 45, 30, 35, 45, 1],
-            [11, "Chrysacier", "Insecte", "None", 50, 20, 55, 30, 1],
-            [12, "Papilusion", "Insecte", "Vol", 60, 45, 50, 70, 1],
-            [13, "Aspicot", "Insecte", "Poison", 40, 35, 30, 50, 1],
-            [14, "Coconfort", "Insecte", "Poison", 45, 25, 50, 35, 1],
-            [15, "Dardargnan", "Insecte", "Poison", 65, 80, 40, 75, 1],
-            [16, "Roucool", "Normal", "Vol", 40, 45, 40, 56, 1],
-            [17, "Roucoups", "Normal", "Vol", 63, 60, 55, 71, 1],
-            [18, "Roucarnage", "Normal", "Vol", 83, 80, 75, 91, 1],
-            [19, "Rattata", "Normal", "None", 30, 56, 35, 72, 1],
-            [20, "Rattatac", "Normal", "None", 55, 81, 60, 97, 1],
-            [21, "Piafabec", "Normal", "Vol", 40, 60, 30, 70, 1],
-            [22, "Rapasdepic", "Normal", "Vol", 65, 90, 65, 100, 1],
-            [23, "Abo", "Poison", "None", 35, 60, 44, 55, 1],
-            [24, "Arbok", "Poison", "None", 60, 85, 69, 80, 1],
-            [25, "Pikachu", "Électrik", "None", 35, 55, 30, 90, 1],
-            [26, "Raichu", "Électrik", "None", 60, 90, 55, 100, 1],
-            [27, "Sabelette", "Sol", "None", 50, 75, 85, 40, 1],
-            [28, "Sablaireau", "Sol", "None", 75, 100, 110, 65, 1],
-            [29, "Nidoran♀", "Poison", "None", 55, 47, 52, 41, 1],
-            [30, "Nidorina", "Poison", "None", 70, 62, 67, 56, 1],
-            [31, "Nidoqueen", "Poison", "Sol", 90, 82, 87, 76, 1],
-            [32, "Nidoran♂", "Poison", "None", 46, 57, 40, 50, 1],
-            [33, "Nidorino", "Poison", "None", 61, 72, 57, 65, 1],
-            [34, "Nidoking", "Poison", "Sol", 81, 92, 77, 85, 1],
-            [35, "Mélofée", "Fée", "None", 70, 45, 48, 35, 1],
-            [36, "Mélodelfe", "Fée", "None", 95, 70, 73, 60, 1],
-            [37, "Goupix", "Feu", "None", 38, 41, 40, 65, 1],
-            [38, "Feunard", "Feu", "None", 73, 76, 75, 100, 1],
-            [39, "Rondoudou", "Normal", "Fée", 115, 45, 20, 20, 1],
-            [40, "Grodoudou", "Normal", "Fée", 140, 70, 45, 45, 1],
-            [41, "Nosferapti", "Poison", "Vol", 40, 45, 35, 55, 1],
-            [42, "Nosferalto", "Poison", "Vol", 75, 80, 70, 90, 1],
-            [43, "Mystherbe", "Plante", "None", 45, 50, 55, 30, 1],
-            [44, "Ortide", "Plante", "Poison", 60, 65, 70, 40, 1],
-            [45, "Rafflesia", "Plante", "Poison", 75, 80, 85, 50, 1],
-            [46, "Paras", "Insecte", "Plante", 35, 70, 55, 25, 1],
-            [47, "Parasect", "Insecte", "Plante", 60, 95, 80, 30, 1],
-            [48, "Mimitoss", "Insecte", "Poison", 60, 55, 50, 45, 1],
-            [49, "Aéromite", "Insecte", "Poison", 70, 65, 60, 90, 1],
-            [50, "Taupiqueur", "Sol", "None", 10, 55, 25, 95, 1]]
+def charger():
+    Pokemon = []
+
+    f = open("pokedex.txt", "r", encoding="utf-8")
+    contenu = f.read().splitlines()
+    f.close()
+
+    for ligne in contenu:
+        if ligne == "":      #  évite les lignes vides sinon error
+            continue
+
+        valeurs = ligne.split(",")
+        pkm = [
+            int(valeurs[0]),
+            valeurs[1],
+            valeurs[2],
+            valeurs[3],
+            int(valeurs[4]),
+            int(valeurs[5]),
+            int(valeurs[6]),
+            int(valeurs[7]),
+            int(valeurs[8])
+        ]
+        Pokemon.append(pkm)
+
+    return Pokemon
 
 def recherche(pkm):
     print("Numéro :", pkm[0],
@@ -68,10 +53,10 @@ def demander_entier(message): ## -> pour vérifier si l'utilisateur met bien un 
             return int(valeur)  
         print("Erreur : Vous devez entrer uniquement des chiffres.")
 
-def filtrage(max_min, quoi, valeur):
+def filtrage(Pokemon, max_min, quoi, valeur):
     quoi = int(quoi)
     valeur = int(valeur)
-    if quoi == 1 or 5 or 6 or 7 or 8 or 9:
+    if quoi in [1, 5, 6, 7, 8, 9]:
         if max_min == 1:
             for pkm in Pokemon:
                 if pkm[quoi -1] <= valeur:
@@ -91,15 +76,77 @@ def filtrage(max_min, quoi, valeur):
 
 def pokedex():
 
+    Pokemon = charger()
+
+    if Pokemon == []:
+        # Si le fichier était vide → on remet les Pokémon de base
+        Pokemon = [[1, "Bulbizarre", "Plante", "Poison", 45, 49, 49, 45, 1],
+                [2, "Herbizarre", "Plante", "Poison", 60, 62, 63, 60, 1],
+                [3, "Florizarre", "Plante", "Poison", 80, 82, 83, 80, 1],
+                [4, "Salamèche", "Feu", "None", 39, 52, 43, 65, 1],
+                [5, "Reptincel", "Feu", "None", 58, 64, 58, 80, 1],
+                [6, "Dracaufeu", "Feu", "Vol", 78, 84, 78, 100, 1],
+                [7, "Carapuce", "Eau", "None", 44, 48, 65, 43, 1],
+                [8, "Carabaffe", "Eau", "None", 59, 63, 80, 58, 1],
+                [9, "Tortank", "Eau", "None", 79, 83, 100, 78, 1],
+                [10, "Chenipan", "Insecte", "None", 45, 30, 35, 45, 1],
+                [11, "Chrysacier", "Insecte", "None", 50, 20, 55, 30, 1],
+                [12, "Papilusion", "Insecte", "Vol", 60, 45, 50, 70, 1],
+                [13, "Aspicot", "Insecte", "Poison", 40, 35, 30, 50, 1],
+                [14, "Coconfort", "Insecte", "Poison", 45, 25, 50, 35, 1],
+                [15, "Dardargnan", "Insecte", "Poison", 65, 80, 40, 75, 1],
+                [16, "Roucool", "Normal", "Vol", 40, 45, 40, 56, 1],
+                [17, "Roucoups", "Normal", "Vol", 63, 60, 55, 71, 1],
+                [18, "Roucarnage", "Normal", "Vol", 83, 80, 75, 91, 1],
+                [19, "Rattata", "Normal", "None", 30, 56, 35, 72, 1],
+                [20, "Rattatac", "Normal", "None", 55, 81, 60, 97, 1],
+                [21, "Piafabec", "Normal", "Vol", 40, 60, 30, 70, 1],
+                [22, "Rapasdepic", "Normal", "Vol", 65, 90, 65, 100, 1],
+                [23, "Abo", "Poison", "None", 35, 60, 44, 55, 1],
+                [24, "Arbok", "Poison", "None", 60, 85, 69, 80, 1],
+                [25, "Pikachu", "Électrik", "None", 35, 55, 30, 90, 1],
+                [26, "Raichu", "Électrik", "None", 60, 90, 55, 100, 1],
+                [27, "Sabelette", "Sol", "None", 50, 75, 85, 40, 1],
+                [28, "Sablaireau", "Sol", "None", 75, 100, 110, 65, 1],
+                [29, "Nidoran♀", "Poison", "None", 55, 47, 52, 41, 1],
+                [30, "Nidorina", "Poison", "None", 70, 62, 67, 56, 1],
+                [31, "Nidoqueen", "Poison", "Sol", 90, 82, 87, 76, 1],
+                [32, "Nidoran♂", "Poison", "None", 46, 57, 40, 50, 1],
+                [33, "Nidorino", "Poison", "None", 61, 72, 57, 65, 1],
+                [34, "Nidoking", "Poison", "Sol", 81, 92, 77, 85, 1],
+                [35, "Mélofée", "Fée", "None", 70, 45, 48, 35, 1],
+                [36, "Mélodelfe", "Fée", "None", 95, 70, 73, 60, 1],
+                [37, "Goupix", "Feu", "None", 38, 41, 40, 65, 1],
+                [38, "Feunard", "Feu", "None", 73, 76, 75, 100, 1],
+                [39, "Rondoudou", "Normal", "Fée", 115, 45, 20, 20, 1],
+                [40, "Grodoudou", "Normal", "Fée", 140, 70, 45, 45, 1],
+                [41, "Nosferapti", "Poison", "Vol", 40, 45, 35, 55, 1],
+                [42, "Nosferalto", "Poison", "Vol", 75, 80, 70, 90, 1],
+                [43, "Mystherbe", "Plante", "None", 45, 50, 55, 30, 1],
+                [44, "Ortide", "Plante", "Poison", 60, 65, 70, 40, 1],
+                [45, "Rafflesia", "Plante", "Poison", 75, 80, 85, 50, 1],
+                [46, "Paras", "Insecte", "Plante", 35, 70, 55, 25, 1],
+                [47, "Parasect", "Insecte", "Plante", 60, 95, 80, 30, 1],
+                [48, "Mimitoss", "Insecte", "Poison", 60, 55, 50, 45, 1],
+                [49, "Aéromite", "Insecte", "Poison", 70, 65, 60, 90, 1],
+                [50, "Taupiqueur", "Sol", "None", 10, 55, 25, 95, 1]]
+    print("====================================================")
+    print(r"  _____   ____  _  ________ _____  ________  __ ")
+    print(r" |  __ \ / __ \| |/ /  ____|  __ \|  ____\ \/ / ")
+    print(r" | |__) | |  | | ' /| |__  | |  | | |__   \  /  ")
+    print(r" |  ___/| |  | |  < |  __| | |  | |  __|   > <   ")
+    print(r" | |    | |__| | . \| |____| |__| | |____ /  /\ ")
+    print(r" |_|     \____/|_|\_\______|_____/|______/_/ \_\\")
+    print("")
+
     while True:
-        print("\n=== POKÉDEX MENU ===")
+        print("====================================================")
+        print("                  MENU DU POKEDEX")        
         print("    0 - Quitter")
         print("    1 - Lister tout")
         print("    2 - Rechercher")
         print("    3 - Ajouter un Pokémon") 
         print("    4 - Filtrer") 
-
-        # J'ai enlevé "Trier" car la fonction était vide dans ton code
        
         choix = input("Votre choix : ") 
         print("-" * 50)
@@ -206,7 +253,7 @@ def pokedex():
             else:
                 ajout_nom = input("Nom : ")
                 ajout_type1 = input("Type primaire : ")
-                ajout_type2 = input("Type secondaire (ou 'None') : ")
+                ajout_type2 = input("Type secondaire : ")
                 ajout_pv = demander_entier("PV : ")
                 ajout_att = demander_entier("Attaque : ")
                 ajout_def = demander_entier("Défense : ")
@@ -217,10 +264,12 @@ def pokedex():
                                ajout_pv, ajout_att, ajout_def, ajout_speed, ajout_gen]
                 
                 Pokemon.append(nouveau_pkm)
+                sauvegarder(Pokemon)
                 print("-" * 50)
                 print("Pokémon ajouté avec succès !")
                 print()
                 print("FERMETURE DU MODULE D'AJOUT...")
+                print("Ce Pokémon a été ajouté avec succès !")
                 recherche(nouveau_pkm)
 
         elif choix == "4":
@@ -241,12 +290,11 @@ def pokedex():
             valeur = demander_entier("Pour quelle valeur de départ ? : ")
             print("-" * 50)
 
-            filtrage(max_min, quoi, valeur)
+            filtrage(Pokemon, max_min, quoi, valeur)
 
         else:
-            print("Veuillez choisir 0, 1, 2 ou 3.")
+            print("Veuillez choisir 0, 1, 2, 3 ou 4.")
     
-
 
 
 
