@@ -94,13 +94,13 @@ Ce programme utilise les fonctions `sauvegarder()` et `charger()` pour lire et �
 Grâce à la fonction `demander_entier()`, le programme ne plante jamais si vous entrez du texte à la place d'un nombre :
 
 
-### 🔍 Filtrage Avancé
+### 🔍 Trie Avancé
 
-Le système de filtrage permet de trouver en un clin d'œil les Pokémon les plus puissants (ex: "Afficher tous les Pokémon ayant plus de 80 en Attaque").
-Au lieu de créer 5 ou 6 fonctions différentes pour filtrer par PV, par Attaque ou par Défense, j'ai développé une fonction de filtrage universelle :
+Le système de trie permet de trouver en un clin d'œil les Pokémon les plus puissants (ex: "Afficher tous les Pokémon ayant plus de 80 en Attaque").
+Au lieu de créer 5 ou 6 fonctions différentes pour trier par PV, par Attaque ou par Défense, j'ai développé une fonction de trie universelle :
 Python
 ```
-def filtrage(Pokemon, max_min, quoi, valeur):
+def trie(Pokemon, max_min, quoi, valeur):
 ```
 ---
 
