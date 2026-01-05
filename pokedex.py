@@ -1,3 +1,5 @@
+import time
+
 def sauvegarder(Pokemon):
     f = open("pokedex.txt", "w", encoding="utf-8")
     for pkm in Pokemon:
@@ -10,30 +12,29 @@ def sauvegarder(Pokemon):
 
 def charger():
     Pokemon = []
+    try:
+        # On essaie d'ouvrir le fichier
+        with open("pokedex.txt", "r", encoding="utf-8") as f:
+            contenu = f.read().splitlines()
+        
+        for ligne in contenu:
+            if ligne == "": 
+                continue
 
-    f = open("pokedex.txt", "r", encoding="utf-8")
-    contenu = f.read().splitlines()
-    f.close()
+            valeurs = ligne.split(",")
 
-    for ligne in contenu:
-        if ligne == "":      #  évite les lignes vides sinon error
-            continue
-
-        valeurs = ligne.split(",")
-        pkm = [
-            int(valeurs[0]),
-            valeurs[1],
-            valeurs[2],
-            valeurs[3],
-            int(valeurs[4]),
-            int(valeurs[5]),
-            int(valeurs[6]),
-            int(valeurs[7]),
-            int(valeurs[8])
-        ]
-        Pokemon.append(pkm)
+            pkm = [int(valeurs[0]), valeurs[1], valeurs[2], valeurs[3], 
+                    int(valeurs[4]), int(valeurs[5]), int(valeurs[6]), 
+                    int(valeurs[7]), int(valeurs[8])]
+            Pokemon.append(pkm)
+             
+    except FileNotFoundError:
+        # Si le fichier n'existe pas, on retourne une liste vide
+        # Le programme principal se chargera de remplir les données de base
+        return []
 
     return Pokemon
+
 
 def statistiques(Pokemon, type_calcul, quoi):
     quoi = int(quoi)
@@ -82,12 +83,12 @@ def statistiques(Pokemon, type_calcul, quoi):
                     pkm_retenu = pkm
 
         if type_calcul == 1:
-            intro = "MAXIMUM"
+            max_or_min = "MAXIMUM"
         else:
-            intro = "MINIMUM"
+            max_or_min = "MINIMUM"
 
         print("-" * 50)
-        print("Le Pokémon avec le", intro, "de", nom_stat, "est :")
+        print("Le Pokémon avec le", max_or_min, "de", nom_stat, "est :")
         recherche(pkm_retenu)
 
 def recherche(pkm):
@@ -108,7 +109,7 @@ def demander_entier(message): ## -> pour vérifier si l'utilisateur met bien un 
             return int(valeur)  
         print("Erreur : Vous devez entrer uniquement des chiffres.")
 
-def filtrage(Pokemon, max_min, quoi, valeur):
+def trie(Pokemon, max_min, quoi, valeur):
     quoi = int(quoi)
     valeur = int(valeur)
     if quoi in [1, 5, 6, 7, 8, 9]:
@@ -200,7 +201,7 @@ def pokedex():
     print(r" |_|     \____/|_|\_\______|_____/|______/_/ \_\\")
     time.sleep(0.05)
     print("")
-
+    
     while True:
         print("====================================================")
         print("                  MENU DU POKEDEX")        
@@ -208,7 +209,7 @@ def pokedex():
         print("    1 - Lister tout")
         print("    2 - Rechercher")
         print("    3 - Ajouter un Pokémon") 
-        print("    4 - Filtrer") 
+        print("    4 - Trier") 
         print("    5 - Statistiques")
        
         choix = input("Votre choix : ") 
@@ -315,6 +316,12 @@ def pokedex():
                 print("-" * 50)
             else:
                 ajout_nom = input("Nom : ")
+
+                if "," in ajout_nom:
+                    print("Les virgules sont interdites dans le nom.")
+                    print("-" * 50)
+                    continue
+
                 ajout_type1 = input("Type primaire : ")
                 ajout_type2 = input("Type secondaire : ")
                 ajout_pv = demander_entier("PV : ")
@@ -332,11 +339,11 @@ def pokedex():
                 print("Pokémon ajouté avec succès !")
                 print()
                 print("FERMETURE DU MODULE D'AJOUT...")
-                print("Ce Pokémon a été ajouté avec succès !")
+                print("-" * 50)
                 recherche(nouveau_pkm)
 
         elif choix == "4":
-            print("Filtrer par :")
+            print("Trier par :")
             print("    1 - Le Minimum")
             print("    2 - Le Maximum")
             max_min = demander_entier("Choix : ")
@@ -353,7 +360,7 @@ def pokedex():
             valeur = demander_entier("Pour quelle valeur de départ ? : ")
             print("-" * 50)
 
-            filtrage(Pokemon, max_min, quoi, valeur)
+            trie(Pokemon, max_min, quoi, valeur)
 
         elif choix == "5":
             print("Quel type de statistique ?")
@@ -379,9 +386,12 @@ def pokedex():
                 statistiques(Pokemon, type_calcul, quoi)
             else:
                 print("Choix invalide (choisissez entre 4 et 8).")
+                print("-" * 50)
+
 
         else:
             if choix not in ["1", "2", "3", "4", "5"]: # Petit fix ici pour inclure le 5
                  print("Veuillez choisir un chiffre entre 0 et 5.")
     
+
 pokedex()     
