@@ -21,7 +21,7 @@
     1 - Lister tout
     2 - Rechercher
     3 - Ajouter un Pokémon
-    4 - Filtrer
+    4 - Trier
     5 - Statistiques 
 ====================================================
 ```
@@ -35,7 +35,7 @@ Voici l'état d'avancement par rapport au cahier des charges initial :
 - [x] **Structure de données** : Tableau (50 Pokémon inclus par défaut) dans un fichier texte pour les sauvegardes.
 - [x] **Affichage** : Fonction de formatage propre pour chaque Pokémon
 - [x] **Recherches avancées** : Par numéro, nom, type, et statistiques
-- [x] **Filtrage dynamique** : Système de recherche par Minimum/Maximum sur les PV, Attaque, etc.
+- [x] **Trie dynamique** : Système de recherche par Minimum/Maximum sur les PV, Attaque, etc.
 - [x] **Ajout Dynamique** : Formulaire de création d'un nouveau Pokémon avec validation des données
 - [x] **Persistance des informations** : Sauvegarde et chargement automatique via un fichier `pokedex.txt`
 - [x] **Sécurité** : Gestion des erreurs de saisie (évite les crashs si l'utilisateur ne tape pas un chiffre)
@@ -63,7 +63,7 @@ Chaque Pokémon est stocké sous forme de liste avec l'organisation suivante :
 ## 🛠️ Installation et Utilisation
 
 ## Dépendances nécessaires :
-- [x] GIT
+- [x] GIT (pour installation en ligne de commande avec git clone)
 - [x] Un terminal python 
 
 1. **Cloner le dépôt :**
